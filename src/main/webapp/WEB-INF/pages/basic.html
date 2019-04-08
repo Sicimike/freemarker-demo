@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Context-Type" content="text/html;charset=UTF-8">
+	<title>freemarker demo</title>
+	<style type="text/css">
+		ul li {
+			font-weight: bold;
+			font-size: 20px;
+			margin: 15px 0px 5px 0px
+		}
+	</style>
+</head>
+	<body>
+		<h1>基本取值</h1>
+		<ul>
+			<li>
+				int: ${intVal}<br/>
+				long: ${longVal}<br/>
+				string: ${stringVal}<br/>
+				date: ${dateVal?string('yyyy-MM-dd HH:mm:ss')}<br/>
+				null: ${nullVal!'default value'}<br/>
+				missing: ${missingVal!'default value'}
+			</li>
+		</ul>
+
+		<h1>运算</h1>
+		<ul>
+			<li>
+				<#assign x = 100/>
+				x = ${x}<br/>
+				x + 100 = ${x + 100}
+			</li>
+		</ul>
+		
+		<h1>if语句</h1>
+		<ul>
+			<li>
+				<#assign y = 101/>
+				<#if y == 100>
+					y = 100
+				<#elseif y == 101>
+					y = 101
+				<#else>
+					y = 102
+				</#if>
+			</li>
+		</ul>
+		
+		<h1>if+逻辑运算</h1>
+		<ul>
+			<li>
+				<#assign xx = 'python'/>
+				<#if xx == 'python' && xx?length==6>
+					xx = python
+				<#elseif xx == 'java' && xx?length==4>
+					xx = java
+				<#else>
+					xx = PHP
+				</#if>
+			</li>
+		</ul>
+		
+		<h1>switch</h1>
+		<ul>
+			<li>
+				<#assign yy = 'Java'/>
+				<#switch yy>
+					<#case 'Java'>
+						yy = Java
+						<#break>
+					<#case 'Python'>
+						yy = Python
+						<#break>
+					<#default>
+						yy = PHP
+				</#switch>
+			</li>
+		</ul>
+	</body>
+</html>

@@ -29,7 +29,7 @@
 				<prop key="number_format">0.######</prop>
 				<!-- 去掉多余的空格 -->
 				<prop key="whitespace_stripping">true</prop>
-<!-- 				<prop key="auto_import">/WEB-INF/ftl/spring.ftl as s</prop> -->
+				<prop key="auto_import">/WEB-INF/ftl/spring.ftl as s</prop>
 			</props>
 		</property>
 <!-- 		<property name="freemarkerVariables"> -->

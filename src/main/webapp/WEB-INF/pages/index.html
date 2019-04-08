@@ -12,6 +12,33 @@
 	</style>
 </head>
 	<body>
+		<!-- 基本取值 -->
+		<h1>基本取值</h1>
 		<h1>${username}</h1>
+		<br/>
+		
+		<!-- List+对象取值 -->
+		<h1>List+对象取值</h1>
+		<ul>
+			<#list userList as item>
+				<li>username is ${item.username}, birthday is ${item.birthday?string("yyyy-MM-dd HH:mm:ss")}</li>
+			</#list>
+		</ul>
+		<br/>
+
+		<!-- Map取值 -->
+		<h1>Map取值</h1>
+		<ul>
+			<#list languageMap?keys as key>
+				<li>${key}--${languageMap[key]}</li>
+			</#list>
+		</ul>
+		<br/>
+		
+		<!-- HTML转义 -->
+		<h1>HTML转义</h1>
+		<h1>${htmlString}</h1>
+<!-- 		<h1>${htmlString?html}</h1> -->
+		<br/>
 	</body>
 </html>
