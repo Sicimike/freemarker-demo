@@ -32,11 +32,11 @@
 				<prop key="auto_import">/WEB-INF/ftl/spring.ftl as s</prop>
 			</props>
 		</property>
-<!-- 		<property name="freemarkerVariables"> -->
-<!-- 			<map> -->
-<!-- 				<entry key="sortSalaryDirec" value-ref="sortSalaryDirectiveModel"/> -->
-<!-- 			</map> -->
-<!-- 		</property> -->
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="role" value-ref="roleDirectiveModel"/>
+			</map>
+		</property>
 	</bean>
 	
 	<!-- 另一种方式 -->

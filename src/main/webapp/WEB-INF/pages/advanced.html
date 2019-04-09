@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Context-Type" content="text/html;charset=UTF-8">
+	<title>advanced</title>
+	<style type="text/css">
+		ul li {
+			font-weight: bold;
+			font-size: 20px;
+			margin: 15px 0px 5px 0px
+		}
+	</style>
+</head>
+	<body>
+		<h1>拼接</h1>
+		<ul>
+			<li>
+				<#assign a='Hello' />
+				<#assign b='World' />
+				a+b = ${a+b}
+			</li>
+		</ul>
+		<h1>长度</h1>
+		<ul>
+			<li>
+				长度：${(a+b)?length}
+			</li>
+		</ul>
+		<h1>截取</h1>
+		<ul>
+			<li>
+				截取：${(a+b)?substring(1,4)}
+			</li>
+		</ul>
+		<h1>大小写</h1>
+		<ul>
+			<li>
+				小写：${(a+b)?lower_case}
+			</li>
+			<li>
+				大写：${(a+b)?upper_case}
+			</li>
+		</ul>
+		<h1>查找</h1>
+		<ul>
+			<li>
+				index_of：${(a+b)?index_of('o')}
+			</li>
+			<li>
+				last_index_of：${(a+b)?last_index_of('o')}
+			</li>
+		</ul>
+		<h1>替换</h1>
+		<ul>
+			<li>
+				替换：${(a+b)?replace('o','x')}
+			</li>
+		</ul>
+
+		<h1>自定义函数</h1>
+		<#assign myList=[2,1,5,4,3,6,7,4] />
+		<ul>
+			<li>排序前：</li>
+			<#list myList as item>
+				${item},
+			</#list>
+			
+			<!-- 自定义排序 -->
+			<li>升序(自定义排序)：</li>
+			<#list mySort(myList) as item>
+				${item},
+			</#list>
+			
+			<!-- freemarker自带的函数 -->
+			<li>升序(freemarker自带的函数)：</li>
+			<#list myList?sort as item>
+				${item},
+			</#list>
+			
+			<li>降序：</li>
+			<#list myList?sort?reverse as item>
+				${item},
+			</#list>
+		</ul>
+
+		<h1>自定义指令</h1>
+		<ul>
+			<@role user='123456' role='admin';result1, result2>
+				<#if result1>
+					我的角色是：admin
+				</#if>
+				<br/>
+				我的权限是：
+				<#list result2 as item>
+					${item}
+				</#list>
+				<br/>
+			</@role>
+		</ul>
+
+		<h1>macro</h1>
+		<ul>
+			<!-- 定义，参数可以有默认值，但是没有默认值的参数必须放在有默认值的参数之前 -->
+			<#macro test param1 param2 param3="freemarker">
+				macro : param1 is ${param1}, param2 is ${param2}, param3 is ${param3}
+			</#macro>
+			<!-- 调用 -->
+			<@test param1="Hello" param2="world" />
+			<br/>
+			
+			<!-- 参数个数不确定的macro -->
+			<#macro test param1 param2 paramExt...>
+				macro : param1 is ${param1}, param2 is ${param2}, param3 is ${paramExt['param3']}
+			</#macro>
+			<!-- 调用 -->
+			<@test param1="Hello" param2="world" param3="freemarker" />
+		</ul>
+		
+		<h1>macro + nested</h1>
+		<ul>
+			<!-- 定义 -->
+			<#macro test>
+				nested : <#nested />
+			</#macro>
+			<!-- 调用 -->
+			<@test>i am nested</@test>
+			<br/>
+			<!--定义，有参数的nested -->
+			<#macro test param1>
+				nested: <#nested param1, "default value" />
+			</#macro>
+			<!-- 调用 -->
+			<@test param1 = "hello"; nestedParam1, nestedParam2>
+				${nestedParam1} ${nestedParam2}
+			</@test>
+		</ul>
+		
+		<h1>函数</h1>
+		<ul>
+			<!-- 定义 -->
+			<#function doAdd param1 param2>
+				<#return param1+param2 />
+			</#function>
+			<!-- 调用 -->
+			add is ${doAdd(100, 200)}
+		</ul>
+	</body>
+</html>

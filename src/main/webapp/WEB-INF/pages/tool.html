@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Context-Type" content="text/html;charset=UTF-8">
+	<title>tool</title>
+	<style type="text/css">
+		ul li {
+			font-weight: bold;
+			font-size: 20px;
+			margin: 15px 0px 5px 0px
+		}
+	</style>
+</head>
+	<body>
+		<h1>字符串分割</h1>
+		<ul>
+			<#list "a|b|c|d|e"?split("|") as item >
+				<li>
+					${item}
+				</li>
+			</#list>
+		</ul>
+
+		<h1>字符串转日期</h1>
+		<ul>
+			<#assign a="2018/12/12"?date("yyyy/MM/dd") />
+			<#assign b="2018-12-12 12:12:12"?datetime("yyyy-MM-dd HH:mm:ss") />
+			<#assign c="12:12:12"?time("HH:mm:ss") />
+			<li>${a}</li>
+			<li>${b}</li>
+			<li>${c}</li>
+		</ul>
+		
+		<h1>数字格式化</h1>
+		<ul>
+			<#assign a=3.1415926?string("0.###") />
+			<li>${a}</li>
+		</ul>
+		<h1>数字四舍五入</h1>
+		<ul>
+			<#assign a=3.1415926?round />
+			<li>${a}</li>
+		</ul>
+
+		<h1>List分组</h1>
+		<ul>
+			<#assign myList=[1,2,3,4,11,22,33,44,111,222,333,444] />
+			<!-- chunk(4)每4个分成一组-->
+			<li>${myList?chunk(4)?size}</li>
+			<!-- 每四个分成一组，取最后一组遍历输出-->
+			<#list myList?chunk(4)?last as item >
+				<li>${item}</li>
+			</#list>
+		</ul>
+
+		<h1>其他内建函数</h1>
+		<ul>
+			<#assign a="hello" />
+			<li>${a?is_number?string('true','false')}</li>
+			<li>${a?has_content?string('true','false')}</li>
+		</ul>
+	</body>
+</html>

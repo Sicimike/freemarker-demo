@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.domain.FreeMarkerSort;
 import com.example.domain.User;
 
 /**
@@ -35,15 +36,20 @@ public class IndexController {
 		}
 		return list;
 	}
-	
-	private Map<String, String> loadLanguageMap(){
-		Map<String, String> map = new HashMap();
+
+	private Map<String, String> loadLanguageMap() {
+		Map<String, String> map = new HashMap<String, String>();
 		map.put("Python", "人生苦短，我用Python");
 		map.put("PHP", "PHP是世界上最好的语言");
 		map.put("Java", "谁，谁在说话");
 		return map;
 	}
 
+	/**
+	 * freemarker基本用法
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/basic")
 	public Model basic(Model model) {
 		model.addAttribute("intVal", 100);
@@ -51,6 +57,27 @@ public class IndexController {
 		model.addAttribute("stringVal", "freemarker");
 		model.addAttribute("dateVal", new Date());
 		model.addAttribute("nullVal", null);
+		return model;
+	}
+
+	/**
+	 * freemarker高级用法
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/advanced")
+	public Model advanced(Model model) {
+		model.addAttribute("mySort", new FreeMarkerSort());
+		return model;
+	}
+	
+	/**
+	 * freemarker常用内建函数
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/tool")
+	public Model tool(Model model) {
 		return model;
 	}
 }
