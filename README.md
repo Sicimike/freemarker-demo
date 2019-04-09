@@ -46,7 +46,7 @@
 ```
 <!-- 支持string类型 -->
 <#switch var>
-	<#case  >
+	<#case value>
 		...
 	<#break>
 	<#case value>
